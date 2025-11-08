@@ -10,6 +10,36 @@
   <link rel="stylesheet" href="/static/style.css">
   <title>Santa Order Form</title>
   <link rel="icon" type="image/png" href="static/szlogo.png">
+  <style>
+    .video-tutorial {
+      margin: 20px 0;
+      padding: 15px;
+      background: linear-gradient(135deg, rgba(255, 136, 0, 0.08), rgba(255, 187, 0, 0.12));
+      border-radius: 10px;
+      border: 2px solid rgba(255, 136, 0, 0.25);
+    }
+    
+    .video-tutorial h3 {
+      color: #ff8800;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      text-shadow: 0 0 20px rgba(255, 136, 0, 0.6);
+    }
+    
+    .video-tutorial iframe {
+      width: 100%;
+      height: 300px;
+      border-radius: 8px;
+      border: none;
+    }
+    
+    @media (max-width: 768px) {
+      .video-tutorial iframe {
+        height: 200px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -83,6 +113,16 @@
     <div class="order-form-container">
       <button class="close-form" onclick="closeOrderForm()">×</button>
       <h2>შეკვეთის ფორმა</h2>
+      
+
+      <div class="video-tutorial">
+        <h3>ვიდეო ტუტორიალი შეკვეთისთვის</h3>
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+      </div>
+      
       <form id="orderForm" onsubmit="submitOrder(event)">
         <div class="form-group">
           <label for="numPeople">რამდენი ადამიანისთვის გსურთ ვიდეო?</label>
