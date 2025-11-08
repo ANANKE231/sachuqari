@@ -1455,6 +1455,34 @@ option:disabled {
   background: rgba(255, 68, 68, 0.95);
   transform: scale(1.1);
 }
+.video-tutorial {
+      margin: 20px 0;
+      padding: 15px;
+      background: linear-gradient(135deg, rgba(255, 136, 0, 0.08), rgba(255, 187, 0, 0.12));
+      border-radius: 10px;
+      border: 2px solid rgba(255, 136, 0, 0.25);
+    }
+    
+    .video-tutorial h3 {
+      color: #ff8800;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      text-shadow: 0 0 20px rgba(255, 136, 0, 0.6);
+    }
+    
+    .video-tutorial iframe {
+      width: 100%;
+      height: 300px;
+      border-radius: 8px;
+      border: none;
+    }
+    
+    @media (max-width: 768px) {
+      .video-tutorial iframe {
+        height: 200px;
+      }
+    }
 /*responsiveeeeeeeee designnnnnnnnnnnnnnn*/
 
 @media (max-width: 1024px) {
@@ -1477,7 +1505,7 @@ option:disabled {
   }
   
   .videos-container iframe {
-    width: 100%;
+    width: 120%;
     height: 400px;
   }
   
@@ -1553,6 +1581,10 @@ option:disabled {
   .delivery-container h2,
   .payment-container h2 {
     font-size: 1.8rem;
+  }
+
+   input, textarea, select {
+    font-size: 16px !important;
   }
 }
 
@@ -1784,3 +1816,181 @@ option:disabled {
     
   }
 }
+@media (hover: none) and (pointer: coarse) {
+  .order-button:hover,
+  .delivery-option:hover {
+    transform: none;
+  }
+  
+  .close-form,
+  .close-delivery,
+  .close-payment {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+@supports (padding: max(0px)) {
+  .header {
+    padding-top: max(80px, env(safe-area-inset-top));
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .header h1 {
+    font-size: 2em;
+  }
+  
+  .santa-peek {
+    display: none; 
+  }
+  
+  .intro-text {
+    margin-top: 20px;
+  }
+}
+*:focus-visible {
+  outline: 3px solid #ff8800;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; 
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      background: #000;
+    }
+    
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .tutorial-icon {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 1.8rem;
+      vertical-align: middle;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .video-tutorial {
+        padding: 18px;
+      }
+
+      .video-tutorial h3 {
+        font-size: 1.3rem;
+        margin-bottom: 18px;
+      }
+
+      .tutorial-icon {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+
+      .video-tutorial {
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 10px;
+      }
+      
+      .video-tutorial h3 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        line-height: 1.4;
+      }
+
+      .tutorial-icon {
+        font-size: 1.4rem;
+        display: block;
+        margin: 0 auto 8px;
+      }
+
+      .video-wrapper {
+        padding-bottom: 75%; 
+        border-radius: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .video-tutorial {
+        padding: 12px;
+        margin: 12px 0;
+      }
+      
+      .video-tutorial h3 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+      }
+
+      .tutorial-icon {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 768px) and (orientation: landscape) {
+      .video-wrapper {
+        padding-bottom: 56.25%; 
+      }
+    }
+
+    .demo-content {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .demo-content h1 {
+      color: #ff8800;
+      margin-bottom: 15px;
+      text-shadow: 0 0 20px rgba(255, 136, 0, 0.6);
+    }
+
+    .demo-content p {
+      line-height: 1.6;
+      opacity: 0.9;
+    }
