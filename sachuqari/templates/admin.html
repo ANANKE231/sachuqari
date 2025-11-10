@@ -3,81 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <title>Santa Orders Dashboard</title>
+     <link rel="icon" type="image/png" href="/static/szlogo.png">
     <style>
+       * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #1a1a1a;
-            color: #eee;
-            margin: 0;
+            font-family: 'Georgia', serif;
+            color: #fff;
+            background: #2a1810;
+            min-height: 100vh;
             padding: 20px;
         }
+
         h1 {
             text-align: center;
-            color: #ffcc00;
+            font-size: 2.5em;
+            font-weight: 600;
+            color: #ffbb00;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            letter-spacing: 1px;
         }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background: #2a2a2a;
+            background: #3d2418;
             border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 3px solid #ffbb00;
         }
+
         th, td {
-            border: 1px solid #444;
-            padding: 10px;
+            border: 1px solid rgba(255, 187, 0, 0.3);
+            padding: 15px;
             text-align: left;
         }
+
         th {
-            background: #ff8800;
+            background: linear-gradient(135deg, #ff4444 0%, #ff8800 50%, #ffbb00 100%);
             color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
+
         tr:nth-child(even) {
-            background: #333;
+            background: rgba(61, 36, 24, 0.5);
         }
+
+        tr:hover {
+            background: rgba(255, 136, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
         img {
-            max-height: 100px;
-            border-radius: 6px;
-            margin: 3px;
+            max-height: 120px;
+            border-radius: 8px;
+            margin: 5px;
+            border: 2px solid #ffbb00;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
         }
+
+        img:hover {
+            transform: scale(1.1);
+        }
+
         .no-file {
-            color: #777;
+            color: rgba(255, 221, 0, 0.6);
             font-style: italic;
         }
+
         .child-block {
-            margin-top: 10px;
-            padding: 5px;
-            border-left: 3px solid #ff8800;
+            margin-top: 15px;
+            padding: 10px;
+            border-left: 4px solid #ff8800;
+            background: rgba(255, 136, 0, 0.05);
+            border-radius: 5px;
         }
+
+        .child-block strong {
+            color: #ffbb00;
+            text-shadow: 0 0 10px rgba(255, 187, 0, 0.5);
+        }
+
         .images {
-            margin-top: 5px;
+            margin-top: 10px;
         }
+
         .delete-btn {
-            background: #ff4444;
+            background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);
             border: none;
-            padding: 6px 10px;
+            padding: 10px 20px;
             color: white;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(255, 68, 68, 0.4);
         }
+
         .delete-btn:hover {
-            background: #ff2222;
+            background: linear-gradient(135deg, #ff2222 0%, #ff4444 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 68, 68, 0.6);
+        }
+
+        .delete-btn:active {
+            transform: translateY(0);
+        }
+
+        a {
+            color: #ffdd00;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 221, 0, 0.8);
+        }
+        img {
+    max-height: 120px;
+    border-radius: 8px;
+    margin: 5px;
+    border: 2px solid #ffbb00;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90vh;
+    border: 5px solid #ffbb00;
+    box-shadow: 0 0 50px rgba(255, 187, 0, 0.5);
+    transform: none;
+    cursor: default;
+}
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            .container {
+                overflow-x: auto;
+            }
+
+            table {
+                font-size: 0.85rem;
+                border: 2px solid #ffbb00;
+                min-width: 800px;
+            }
+
+            th, td {
+                padding: 10px 8px;
+            }
+
+            img {
+                max-height: 80px;
+            }
+
+            .child-block {
+                padding: 8px;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                letter-spacing: 0.5px;
+            }
+
+            table {
+                font-size: 0.75rem;
+                border: 2px solid #ffbb00;
+            }
+
+            th, td {
+                padding: 8px 6px;
+            }
+
+            .delete-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+
+            img {
+                max-height: 60px;
+            }
+
+            .child-block {
+                padding: 6px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.3em;
+            }
+
+            table {
+                font-size: 0.7rem;
+            }
+
+            th, td {
+                padding: 6px 4px;
+            }
+
+            .delete-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>🎅 Santa Orders Dashboard</h1>
+    <h1>შემოწირულების სია :))</h1>
 
     <table>
         <tr>
             <th>ID</th>
-            <th>Payment Name</th>
-            <th>Contact</th>
-            <th>Delivery</th>
-            <th>Video Type</th>
-            <th>Receipt</th>
-            <th>Children</th>
-            <th>Actions</th>
+            <th>გადამხდელის სახელი და გვარი</th>
+            <th>საკონტაქტო ნომერი</th>
+            <th>გაგზავნის ფორმა</th>
+            <th>Type</th>
+            <th>ქვითარი</th>
+            <th>ყველაფერი ადრესატზე/ადრესატებზე(ფოტოს სანახავად დააკლიკეთ ფოტოს)</th>
+            <th>წაშლა (ფრთხილად!)</th>
         </tr>
 
         {% for order in orders %}
@@ -107,7 +304,7 @@
                 {% for child in order.children.all %}
                     <div class="child-block">
                         <strong>{{ child.name }}</strong>
-                        {% if child.age %} ({{ child.age }} yrs){% endif %}
+                        {% if child.age %} ({{ child.age }} წელი){% endif %}
                         {% if child.message %}
                             <p>{{ child.message }}</p>
                         {% endif %}
@@ -130,13 +327,44 @@
             </td>
 
             <td>
-                <form method="POST" action="/delete-order/{{ order.id }}/" style="margin:0;">
-                    {% csrf_token %}
-                    <button type="submit" class="delete-btn">Delete</button>
-                </form>
+                <form method="POST" action="/delete-order/{{ order.id }}/" style="margin:0;" 
+      onsubmit="return confirm('დარწმუნებული ხარ რომ გსურს ამ ჩანაწერის წაშლა?');">
+    {% csrf_token %}
+    <button type="submit" class="delete-btn">წაშლა</button>
+</form>
             </td>
         </tr>
         {% endfor %}
     </table>
+    <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="Full size">
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('table img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        images.forEach(img => {
+            img.onclick = function(e) {
+                e.preventDefault();
+                lightboxImg.src = this.src;
+                lightbox.classList.add('active');
+            };
+        });
+        
+        lightbox.onclick = function() {
+            lightbox.classList.remove('active');
+        };
+        
+        document.onkeydown = (e) => {
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+            }
+        };
+    });
+</script>
 </body>
+
 </html>
