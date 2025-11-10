@@ -19,6 +19,7 @@ class Order(models.Model):
     gmail_address = models.CharField(max_length=120, blank=True, null=True)
     other_method = models.CharField(max_length=120, blank=True, null=True)
 
+    receipt=models.ImageField(upload_to='', blank=True, null=True)
 
     def __str__(self):
         return f"🎅 Order #{self.id} by {self.payment_name or 'Unknown'}"

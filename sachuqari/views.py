@@ -24,6 +24,7 @@ def home(request):
                 delivery_method=request.POST.get("deliveryMethod"),
                 gmail_address=request.POST.get("gmailAddress"),
                 other_method=request.POST.get("otherMethod"),
+                receipt=request.FILES.get('receipt')
             )
 
             
@@ -47,7 +48,7 @@ def home(request):
                     OrderImage.objects.create(order=order, child=child, image=image_file)
                     j += 1
                 
-                OrderImage.objects.create(order=order, child=child, image=request.POST.get("receipt"))
+                
 
             return JsonResponse({"success": True, "order_id": order.id})
 
