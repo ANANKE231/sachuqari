@@ -415,7 +415,6 @@ async function submitPayment(event) {
 
   const formData = new FormData();
 
-  // 🎥 Basic order info
   const numPeople = parseInt(document.getElementById('numPeople').value);
   const videoType = document.querySelector('input[name="videoType"]:checked')?.value || '';
   const videoTypeOther = document.getElementById('videoTypeOther')?.value || '';
@@ -423,7 +422,6 @@ async function submitPayment(event) {
   formData.append('videoType', videoType);
   if (videoTypeOther) formData.append('videoTypeOther', videoTypeOther);
 
-  // 👶 Recipients
   const peopleData = [];
   for (let i = 1; i <= numPeople; i++) {
     const personData = {
@@ -440,7 +438,6 @@ async function submitPayment(event) {
   }
   formData.append('peopleData', JSON.stringify(peopleData));
 
-  // 📦 Delivery info
   const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value || '';
   const gmailAddress = document.getElementById('gmailAddress')?.value || '';
   const otherMethod = document.getElementById('otherMethod')?.value || '';
@@ -448,7 +445,6 @@ async function submitPayment(event) {
   if (gmailAddress) formData.append('gmailAddress', gmailAddress);
   if (otherMethod) formData.append('otherMethod', otherMethod);
 
-  // 💳 Payment info
   formData.append('payment_name', document.getElementById('fullName').value);
   formData.append('payment_contact', document.getElementById('numberPhone').value);
   formData.append('iban', document.getElementById('iban')?.value || '');
@@ -456,7 +452,6 @@ async function submitPayment(event) {
   if (paymentMethod) formData.append('payment_method', paymentMethod);
   formData.append('receipt', receipt);
 
-  // 📨 Send to backend
   try {
     const submitBtn = event.target.querySelector('.submit-btn');
     const originalText = submitBtn.textContent;
