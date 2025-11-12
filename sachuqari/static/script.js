@@ -35,23 +35,50 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }, 200);
 
-  document.getElementById('orderFormOverlay').addEventListener('click', function (e) {
-    if (e.target === this) {
-      closeOrderForm();
+  // Handle order form overlay
+  const orderFormOverlay = document.getElementById('orderFormOverlay');
+  if (orderFormOverlay) {
+    orderFormOverlay.addEventListener('click', e => {
+      if (e.target === orderFormOverlay) {
+        closeOrderForm();
+      }
+    });
+    
+    const orderFormContainer = orderFormOverlay.querySelector('.order-form-container');
+    if (orderFormContainer) {
+      orderFormContainer.addEventListener('click', e => e.stopPropagation());
     }
-  });
+  }
 
-  document.getElementById('deliveryOverlay').addEventListener('click', function (e) {
-    if (e.target === this) {
-      closeDelivery();
-    }
-  });
+  // Handle delivery overlay - SAME PATTERN
+  const deliveryOverlay = document.getElementById('deliveryOverlay');
+  if (deliveryOverlay) {
+    deliveryOverlay.addEventListener('click', e => {
+      if (e.target.closest('.delivery-container')) return;
+closeDelivery();
 
-  document.getElementById('paymentOverlay').addEventListener('click', function (e) {
-    if (e.target === this) {
-      closePayment();
+    });
+    
+    const deliveryContainer = deliveryOverlay.querySelector('.delivery-container');
+    if (deliveryContainer) {
+      deliveryContainer.addEventListener('click', e => e.stopPropagation());
     }
-  });
+  }
+
+  // Handle payment overlay
+  const paymentOverlay = document.getElementById('paymentOverlay');
+  if (paymentOverlay) {
+    paymentOverlay.addEventListener('click', e => {
+      if (e.target === paymentOverlay) {
+        closePayment();
+      }
+    });
+    
+    const paymentContainer = paymentOverlay.querySelector('.payment-container');
+    if (paymentContainer) {
+      paymentContainer.addEventListener('click', e => e.stopPropagation());
+    }
+  }
 });
 
 function openOrderForm() {
@@ -353,7 +380,7 @@ function updateNameFields() {
     photoGroup.innerHTML = `
       <label for="photoUpload${i}">ატვირთე ფოტო (მინ. 3 ადრესატის, 1-2 თქვენი სურვილისამებრ)</label>
       <div class="custom-file-upload">
-        <label for="photoUpload${i}" class="upload-label">აირჩიე ფაილები</label>
+        <label for="photoUpload${i}" class="upload-label">აირჩიეთ ფოტოები</label>
         <span id="file-name${i}">ფაილი არჩეული არ არის</span>
         <input type="file" id="photoUpload${i}" accept="image/*" multiple required style="display: none;">
       </div>
@@ -630,7 +657,7 @@ async function submitPayment(event) {
       if (success) success.style.display = 'none';
       document.body.style.overflow = 'auto';
       if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
-    }, 2000);
+    }, 6000);
 
   } catch (err) {
     console.error('Error submitting order:', err);
