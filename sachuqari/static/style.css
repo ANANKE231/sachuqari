@@ -3491,7 +3491,71 @@ body.modal-open {
       }
     }
 /*responsiveeeeeeeee designnnnnnnnnnnnnnn*/
+/* Add this to your existing CSS file - responsive styles for comment field */
 
+/* Base styles for comment textarea (add to payment-container section) */
+.payment-container .form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
+  resize: vertical;
+  background-color: #fff;
+  color: #333;
+  min-height: 100px;
+}
+
+.payment-container .form-group textarea:hover {
+  border-color: #ff8800;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 136, 0, 0.15);
+}
+
+.payment-container .form-group textarea:focus {
+  outline: none;
+  border-color: #ff8800;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.25);
+}
+
+.payment-container .form-group textarea::placeholder {
+  color: #999;
+  opacity: 0.8;
+}
+
+/* Tablet responsive (max-width: 768px) */
+@media (max-width: 768px) {
+  .payment-container .form-group textarea {
+    padding: 10px;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    min-height: 90px;
+  }
+}
+
+/* Mobile responsive (max-width: 480px) */
+@media (max-width: 480px) {
+  .payment-container .form-group textarea {
+    padding: 10px;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    min-height: 80px;
+  }
+  
+  .payment-container .form-group label {
+    font-size: 0.95rem;
+  }
+}
+
+/* Very small screens (max-width: 360px) */
+@media (max-width: 360px) {
+  .payment-container .form-group textarea {
+    padding: 8px;
+    font-size: 16px !important;
+    min-height: 70px;
+  }
+}
 @media (max-width: 1024px) {
   .header h1 {
     font-size: 4em;
