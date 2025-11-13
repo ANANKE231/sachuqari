@@ -567,7 +567,8 @@ async function submitPayment(event) {
   formData.append('iban', document.getElementById('iban')?.value || '');
   const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || '';
   if (paymentMethod) formData.append('payment_method', paymentMethod);
-
+const userComment = document.getElementById('userComment')?.value || '';
+  if (userComment) formData.append('user_comment', userComment);
   formData.append('receipt', receipt);
 
   try {
