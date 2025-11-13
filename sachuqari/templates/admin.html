@@ -138,42 +138,50 @@
             color: #fff;
             text-shadow: 0 0 10px rgba(255, 221, 0, 0.8);
         }
+        
         img {
-    max-height: 120px;
-    border-radius: 8px;
-    margin: 5px;
-    border: 2px solid #ffbb00;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
+            max-height: 120px;
+            border-radius: 8px;
+            margin: 5px;
+            border: 2px solid #ffbb00;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
 
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
 
-.lightbox.active {
-    display: flex;
-}
+        .lightbox.active {
+            display: flex;
+        }
 
-.lightbox img {
-    max-width: 90%;
-    max-height: 90vh;
-    border: 5px solid #ffbb00;
-    box-shadow: 0 0 50px rgba(255, 187, 0, 0.5);
-    transform: none;
-    cursor: default;
-}
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 5px solid #ffbb00;
+            box-shadow: 0 0 50px rgba(255, 187, 0, 0.5);
+            transform: none;
+            cursor: default;
+        }
+
+        .comment-cell {
+            max-width: 250px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -205,6 +213,10 @@
             .child-block {
                 padding: 8px;
                 margin-top: 10px;
+            }
+
+            .comment-cell {
+                max-width: 200px;
             }
         }
 
@@ -240,6 +252,10 @@
                 padding: 6px;
                 font-size: 0.9rem;
             }
+
+            .comment-cell {
+                max-width: 150px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -273,6 +289,7 @@
             <th>გაგზავნის ფორმა</th>
             <th>Type</th>
             <th>ქვითარი</th>
+            <th>კომენტარი</th>
             <th>ყველაფერი ადრესატზე/ადრესატებზე(ფოტოს სანახავად დააკლიკეთ ფოტოს)</th>
             <th>წაშლა (ფრთხილად!)</th>
         </tr>
@@ -283,14 +300,14 @@
             <td>{{ order.payment_name|default:"(no name)" }}</td>
             <td>{{ order.payment_contact|default:"(no contact)" }}</td>
             <td>
-    {{ order.delivery_method|default:"(no method)" }}
-    {% if order.gmail_address %}
-        <br><small style="color: #ffdd00;">{{ order.gmail_address }}</small>
-    {% endif %}
-    {% if order.other_method %}
-        <br><small style="color: #ffdd00;">{{ order.other_method }}</small>
-    {% endif %}
-</td>
+                {{ order.delivery_method|default:"(no method)" }}
+                {% if order.gmail_address %}
+                    <br><small style="color: #ffdd00;">{{ order.gmail_address }}</small>
+                {% endif %}
+                {% if order.other_method %}
+                    <br><small style="color: #ffdd00;">{{ order.other_method }}</small>
+                {% endif %}
+            </td>
             <td>
                 {{ order.video_type }}
                 {% if order.video_type_other %}
@@ -305,6 +322,14 @@
                     </a>
                 {% else %}
                     <span class="no-file">No Receipt</span>
+                {% endif %}
+            </td>
+
+            <td class="comment-cell">
+                {% if order.user_comment %}
+                    {{ order.user_comment }}
+                {% else %}
+                    <span class="no-file">(კომენტარის გარეშე)</span>
                 {% endif %}
             </td>
 
@@ -337,43 +362,43 @@
 
             <td>
                 <form method="POST" action="/delete-order/{{ order.id }}/" style="margin:0;" 
-      onsubmit="return confirm('დარწმუნებული ხარ რომ გსურს ამ ჩანაწერის წაშლა?');">
-    {% csrf_token %}
-    <button type="submit" class="delete-btn">წაშლა</button>
-</form>
+                      onsubmit="return confirm('დარწმუნებული ხარ რომ გსურს ამ ჩანაწერის წაშლა?');">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">წაშლა</button>
+                </form>
             </td>
         </tr>
         {% endfor %}
     </table>
+    
     <div id="lightbox" class="lightbox">
-    <img id="lightbox-img" src="" alt="Full size">
-</div>
+        <img id="lightbox-img" src="" alt="Full size">
+    </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const images = document.querySelectorAll('table img');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        
-        images.forEach(img => {
-            img.onclick = function(e) {
-                e.preventDefault();
-                lightboxImg.src = this.src;
-                lightbox.classList.add('active');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('table img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            images.forEach(img => {
+                img.onclick = function(e) {
+                    e.preventDefault();
+                    lightboxImg.src = this.src;
+                    lightbox.classList.add('active');
+                };
+            });
+            
+            lightbox.onclick = function() {
+                lightbox.classList.remove('active');
+            };
+            
+            document.onkeydown = (e) => {
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                }
             };
         });
-        
-        lightbox.onclick = function() {
-            lightbox.classList.remove('active');
-        };
-        
-        document.onkeydown = (e) => {
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('active');
-            }
-        };
-    });
-</script>
+    </script>
 </body>
-
 </html>
