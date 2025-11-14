@@ -4066,25 +4066,37 @@ body.modal-open {
       line-height: 1.6;
       opacity: 0.9;
     }
- 
+ /* TOP.GE Counter Styling */
 #top-ge-counter-container {
-  text-align: center;
-  margin: 15px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+}
+
+#top-ge-counter-container a {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#top-ge-counter-container a:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
 }
 
 #top-ge-counter-container img {
-  max-width: 88px;
-  height: auto;
-  display: inline-block;
+    height: 32px;
+    width: auto;
+    vertical-align: middle;
 }
 
-.footer p:last-child {
-  margin-top: 25px;
-  font-size: 0.95rem; 
-  opacity: 0.8;
-  color:white;
+/* Make sure footer contacts container aligns everything properly */
+.footer-contacts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 15px 0;
 }
