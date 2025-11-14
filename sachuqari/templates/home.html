@@ -326,18 +326,20 @@
         </svg>
       </a>
     </div>
-   <div id="top-ge-counter-container" data-site-id="118367">
+  {% load static %}
+
+<div id="top-ge-counter-container" data-site-id="118367">
     <a href="https://top.ge">
-        <img src="static/topbaner.png" alt="TOP.GE">
+        <img src="{% static 'topbaner.png' %}" alt="TOP.GE">
     </a>
 </div>
+
 <script async src="//counter.top.ge/counter.js"></script>
 
+<p>ყველა უფლება დაცულია © საშობაო ზღაპარი 2025</p>
 
-    <p>ყველა უფლება დაცულია © საშობაო ზღაპარი 2025</p>
-  </footer>
-  
-  <script src="static/script.js"></script>
+<script src="{% static 'script.js' %}"></script>
+
     
 </body>
 
