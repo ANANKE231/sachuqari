@@ -326,34 +326,18 @@
         </svg>
       </a>
     </div>
-{% load static %}
-
-<footer style="background-color: #2b1810; padding: 20px; text-align: center;">
-    <!-- Social Icons Row -->
-    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 15px;">
-        <!-- TikTok -->
-        <a href="YOUR_TIKTOK_URL" target="_blank">
-            <img src="{% static 'tiktok-icon.png' %}" alt="TikTok" style="height: 32px;">
-        </a>
-        
-        <!-- TOP.GE Counter -->
-        <div id="top-ge-counter-container" data-site-id="118367"></div>
-        
-        <!-- Instagram -->
-        <a href="YOUR_INSTAGRAM_URL" target="_blank">
-            <img src="{% static 'instagram-icon.png' %}" alt="Instagram" style="height: 32px;">
-        </a>
-    </div>
-
-    <!-- Copyright -->
-    <p style="color: #fff; margin: 10px 0 0 0; font-size: 14px;">
-        ყველა უფლება დაცულია © საშობაო ზღაპარი 2025
-    </p>
-</footer>
-
+   <div id="top-ge-counter-container" data-site-id="118367">
+    {% comment %} <a href="https://top.ge">
+        <img src="static/topbaner.png" alt="TOP.GE">
+    </a> {% endcomment %}
+</div>
 <script async src="//counter.top.ge/counter.js"></script>
-<script src="{% static 'script.js' %}"></script>
 
+
+    <p>ყველა უფლება დაცულია © საშობაო ზღაპარი 2025</p>
+  </footer>
+  
+  <script src="static/script.js"></script>
     
 </body>
 
